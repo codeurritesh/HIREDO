@@ -27,7 +27,9 @@ app.listen(port, () => {
     console.log('Server is running at port 3000')
 });
 let mess = "";
-
+app.get('/', (req, res) => {
+    res.redirect('/hiredo/home')
+})
 app.get('/Hiredo/Home', (req, res) => {
     mes = "";
     res.render('home');  
