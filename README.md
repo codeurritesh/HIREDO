@@ -11,3 +11,4 @@ The application will feature a search function that allows users to search for w
 Hiredo aims to provide a simple and user-friendly platform for both workers and customers to connect and streamline the process of finding and hiring workers for various tasks.
 
 
+Project Link: https: https://hiredo.onrender.com/
