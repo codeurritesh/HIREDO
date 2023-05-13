@@ -15,4 +15,4 @@ Hiredo aims to provide a simple and user-friendly platform for both workers and 
 ![image](https://github.com/codeurritesh/HIREDO/assets/73749372/12dc336d-072a-44ba-b4fa-500b9b3e6e5f)
 
 
-Project Link: https: https://hiredo.onrender.com/
+Project Link: https://hiredo.onrender.com/
