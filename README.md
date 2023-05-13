@@ -20,4 +20,4 @@ Project Link: https://hiredo.onrender.com/
 Project Developer:
 1. @codeurritesh
 2. @philomathtanya
-3. 
+3. @SurbhiBhardwaj02
