@@ -684,6 +684,6 @@ app.post("/hiredo/worker/:id",async(req,res)=>{
 app.post('/Hiredo/contactus', (req, res) => {
     contacts.create({ name: req.body.name, email: req.body.email, subject: req.body.subject, message: req.body.message}).then(() => {
         console.log("contact saved");
-        res.render('Last_mess');
+        res.render('last_mess');
     })
 })
