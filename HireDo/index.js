@@ -2,8 +2,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
+const filesupload=require('express-fileupload')
 require('dotenv').config();
-
+const cloudinary = require('cloudinary').v2;
+cloudinary.config({
+    cloud_name: "djloge7oo",
+    api_key: "297486764145975",
+    api_secret: "SS000_vfZA7HBaxSbDdr1t1qnlQ"
+  });
+  
 const myString = 'Hello, world!';
 const myHash = crypto.createHash('sha256').update(myString).digest('hex');
 const myHash2 = crypto.createHash('sha256').update(myString).digest('hex');
@@ -22,10 +29,16 @@ const path = require('path');
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'Public')));
 app.use(express.urlencoded({ extended: true }));
+app.use(filesupload({
+    useTempFiles:true
+}))
 const port = 3000;
 app.listen(port, () => {
     console.log('Server is running at port 3000')
 });
+app.get('/', (req, res) => {
+    res.redirect('/hiredo/home')
+})
 let mess = "";
 
 app.get('/Hiredo/Home', (req, res) => {
@@ -527,24 +540,35 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 //---------------------------Worker profile--------------------------------------------------------------
-app.post('/Hiredo/Worker/Profile', upload.array("Photo"), (req, res) => {
-    console.log(req.body);//body sub,itted by form
-    // console.log(req.files[0]);//giving details of files
+app.post('/Hiredo/Worker/Profile',  async(req, res) => {
+    //--------------------------------------updating worker info in mongo--------------------------------------------------------
+    const { email, charge, phno, age, gender, city, state, designation, about } = req.body;
+    // 
+  
+    let link = [];
+    for (let i of req.files.Photo)
+    {
+        
+        await cloudinary.uploader.upload(i.tempFilePath, (err, result) => {
+            if (err)
+            {
+                console.log(err);
+            }
+            else {
+                link.push(result.url);
+            }
 
- //--------------------------------------updating worker info in mongo--------------------------------------------------------
- const { email, charge,phno, age, gender, city, state, designation, about} = req.body;
-    workers.updateOne({ email: `${email}` }, { phone: `${phno}`,charges:charge, age: age, gender: gender, city: city, state: state, designation: designation, about: about,photo:req.files[0].filename,policefile:req.files[1].filename,covidfile:req.files[2].filename}).then((m) => {
+          
+        })
+    }
+   
+    console.log(link);
+     
+    workers.updateOne({ email: `${email}` }, { phone: `${phno}`,charges:charge, age: age, gender: gender, city: city, state: state, designation: designation, about: about,photo:link[0],policefile:link[1],covidfile:link[2]}).then((m) => {
         console.log("data stored of worker");
         
         workers.findOne({ email: email }).then((data) => {  
             res.render('Worker_details', { data });
-            // app.get('/Hiredo/worker/Details', (req, res) => {
-            //     res.render('Worker_details', { data });
-            // })  
-            // res.redirect('/Hiredo/worker/Details');
-
-          
-           
         })
     })
 }) 
@@ -656,7 +680,7 @@ app.post("/Hiredo/worker/Details/:id/:uid",async(req,res)=>{
             console.log(err);
         } else {
             console.log('Email sent successfully');
-            res.render('Last_mess');
+            res.render('last_mess');
         }
     });
 })
@@ -682,6 +706,6 @@ app.post("/hiredo/worker/:id",async(req,res)=>{
 app.post('/Hiredo/contactus', (req, res) => {
     contacts.create({ name: req.body.name, email: req.body.email, subject: req.body.subject, message: req.body.message}).then(() => {
         console.log("contact saved");
-        res.render('Last_mess');
+        res.render('last_mess');
     })
 })

@@ -5,6 +5,7 @@ body{
     /* justify-content: space-between; */
     margin: 0;
     padding: 0;
+    
 }
 #message{
     color: red;
@@ -14,6 +15,7 @@ body{
 #box{
     margin-top: 15px;
     margin-left: 10vw;
+    margin-bottom: 50px;
     background-color: white;
     padding: 30px;
     box-sizing: content-box;
@@ -65,6 +67,12 @@ input[type='radio']{
     /* padding: 20px; */
     background-color: aqua;
 }
+#cartoon{
+    width: 400px;
+    height: 400px;
+    margin-top: 10vh;
+    margin-left:10vw;
+}
 img{
     /* position: fixed; */
     margin-top: 20px;
@@ -98,6 +106,7 @@ p span:hover{
     color:  #015858;
 }
 #logo{
+    margin-top: 20px;
     width: 100px;
     display: none;
 }
@@ -110,35 +119,37 @@ p span:hover{
     border-radius: 0% 0% 80% 0%;
     background-color: #015858;
   }
-/* ----------------------------------------Responsive------------------------------------------ */
+/* ----------------------------------------Responsive------------------------------------------
 @media screen and (max-width: 820px) {
 body{
     flex-direction: column;
     transition: 2s;
 
 }
-}
-@media screen and (max-width: 650px) {
+} */
+@media screen and (max-width: 820px) {
     body {
         flex-direction: column;
         background-color: #01585828;
         margin: 0;    transition: 2s;
 
         padding: 0;
+        
     }
-    img:nth-child(3){
+    #cartoon{
         display: none;    transition: 2s;
 
     }
     #box{
         width: 70vw;
-        position: fixed;
-        top: 200px;
+        /* position: fixed;
+        top: 200px; */
     }
     #logo{
-        position: fixed;
-        left: 10vw;
-        width: 300px;
+        /* position: fixed; */
+        margin-top: 20px;
+        margin: auto;
+        width: 250px;
         display: block;    transition: 2s;
 
   }
@@ -148,12 +159,12 @@ body{
     width: 100vw;
     transition: 2s;
 
-    height: 700px;
+    height: 100vh;
     border-radius: 0% 0% 50% 0%;
     background-color: #015858;
   }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 480px) {
     body {
         flex-direction: column;
         background-color: #01585828;
@@ -161,20 +172,19 @@ body{
         padding: 0;    transition: 2s;
 
     }
-    img:nth-child(3){
+    #cartoon{
         display: none;    transition: 2s;
 
     }
     #box{
-        width: 70vw;
-        margin-left: 18px;
+        /* width: 70vw; */
+        /* margin:auto; */
+        margin-top: 40px;
     
     }
     #logo{
-        position: fixed;
-        top: 20px;
-        left: 10px;
-        width: 300px;    transition: 2s;
+        margin-top: 20px;
+        width: 250px;    transition: 2s;
 
         display: block;
   }
@@ -184,11 +194,11 @@ body{
   #backcircle{
     position: fixed;
     z-index: -1;
-    width: 450px;
+    width: 95%;
 
-    height: 750px;    transition: 2s;
+    height: 100vh;    transition: 2s;
 
-    border-radius: 0% 0% 50% 10%;
+    border-radius: 0% 0% 50% 0%;
     background-color: #015858;
   }
 }
