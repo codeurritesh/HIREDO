@@ -40,7 +40,9 @@ app.get('/', (req, res) => {
     res.redirect('/hiredo/home')
 })
 let mess = "";
-
+app.get('/', (req, res) => {
+    res.redirect('/hiredo/home')
+})
 app.get('/Hiredo/Home', (req, res) => {
     mes = "";
     res.render('home');  
