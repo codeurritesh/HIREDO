@@ -194,7 +194,7 @@ body{
   #backcircle{
     position: fixed;
     z-index: -1;
-    width: 95%;
+    width: 100%;
 
     height: 100vh;    transition: 2s;
 
