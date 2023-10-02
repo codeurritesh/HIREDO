@@ -660,12 +660,12 @@ app.post("/Hiredo/worker/Details/:id/:uid",async(req,res)=>{
     let mailTransporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'hiredo.project.gla@gmail.com',
-            pass: 'lrfefihtbnozeaad'
+            user: sender_email,
+            pass: app_passcode
         }
     });
     let mailDetails = {
-        from: 'hiredo.project.gla@gmail.com',
+        from: sender_email,
         to: `${workerdata.email}`,
         subject: 'Hiredo Hiring',
         html:`<section style="background-color: black;color:white;padding: 20px;"><H1 style="color: white;">Hiring request from HireDo</H1><p style="color: white;"><h4 style="background-color: rgb(162, 0, 255);text-align: center; padding: 20px;color: white;">You are hired by ${userdata.name}.</h4> <p>For more info,you can contact at: ${userdata.phone} or ${userdata.email}</p> <p style="color: white; font-size: smaller; text-align: center">If this email is not intended for you please ignore it.</p></section>`
